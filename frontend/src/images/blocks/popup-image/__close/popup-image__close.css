@@ -1,0 +1,12 @@
+.popup-image__close {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 48rem) {
+  .popup-image__close {
+    max-width: 75vw;
+
+  }
+}

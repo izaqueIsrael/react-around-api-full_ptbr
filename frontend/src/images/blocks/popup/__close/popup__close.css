@@ -1,0 +1,12 @@
+.popup__close {
+  display: flex;
+  align-self: flex-end;
+  width: 32px;
+  transition: 0.1s;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .popup__close {
+    margin-bottom: 1rem;
+  }
+}

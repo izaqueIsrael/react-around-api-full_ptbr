@@ -1,0 +1,16 @@
+.profile__titles {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0 5%;
+  flex-direction: column;
+  justify-self: flex-start;
+  flex-wrap: nowrap;
+  align-content: space-between;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .profile__titles {
+    margin-top: 1.625rem;
+    margin-bottom: 2.25rem;
+  }
+}

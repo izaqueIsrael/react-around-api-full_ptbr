@@ -1,0 +1,110 @@
+/* normalize */
+@import url(./vendor/normalize.css);
+
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap');
+
+/* body */
+@import url(./blocks/body/body.css);
+
+/* title */
+@import url(./blocks/title/title.css);
+
+/* subtitle */
+@import url(./blocks/subtitle/subtitle.css);
+
+/* button */
+@import url(./blocks/button/button.css);
+@import url(./blocks/button/__image/button__image.css);
+@import url(./blocks/button/__text/button__text.css);
+@import url(./blocks/button/__text/_disabled/button__text_disabled.css);
+
+/* logo */
+@import url(./blocks/logo/logo.css);
+
+/* header */
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__container/header__container.css);
+@import url(./blocks/header/__contents/header__contents.css);
+@import url(./blocks/header/__title/header__title.css);
+@import url(./blocks/header/__button/header__button.css);
+@import url(./blocks/header/__options/header__options.css);
+
+/* line */
+@import url(./blocks/line/line.css);
+
+/* profile */
+@import url(blocks/profile/profile.css);
+@import url(blocks/profile/__titles/profile__titles.css);
+@import url(blocks/profile/__title/profile__title.css);
+@import url(./blocks/profile/__subtitle/profile__subtitle.css);
+@import url(./blocks/profile/__container/profile__container.css);
+@import url(./blocks/profile/__pictures/profile__pictures.css);
+@import url(./blocks/profile/__content/profile__content.css);
+@import url(./blocks/profile/__pictures/__image/profile__image.css);
+@import url(./blocks/profile/__button/profile__button.css);
+@import url(./blocks/profile/__pictures/cover/cover.css);
+
+/* posts */
+@import url(./blocks/posts/posts.css);
+
+/* post */
+@import url(./blocks/post/post.css);
+@import url(./blocks/post/__image/post__image.css);
+@import url(./blocks/post/title/post__title.css);
+@import url(./blocks/post/__container/post__container.css);
+@import url(./blocks/post/__button/post__button.css);
+@import url(./blocks/post/__delete/post__delete.css);
+@import url(./blocks/post/__button/_active/post__button_active.css);
+@import url(./blocks/post/__container/info/info.css);
+@import url(./blocks/post/__container/info/like/like.css);
+
+/* footer */
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/footer__title/footer__title.css);
+
+/* fade */
+@import url(./blocks/fade/fade.css);
+@import url(./blocks/fade/_closed/fade_closed.css);
+
+/* popup */
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_closed/popup_closed.css);
+@import url(./blocks/popup/__close/popup__close.css);
+@import url(./blocks/popup/__icon/popup__icon.css);
+@import url(./blocks/popup/__button/popup__button.css);
+@import url(./blocks/popup/__text/popup__text.css);
+@import url(./blocks/popup/__image/popup__image.css);
+@import url(./blocks/popup/_delete/popup_delete.css);
+
+/* popup-image */
+@import url(./blocks/popup-image/popup-image.css);
+@import url(./blocks/popup-image/__close/popup-image__close.css);
+
+/* modal */
+@import url(./blocks/modal/modal.css);
+@import url(./blocks/modal/__title/modal__title.css);
+@import url(./blocks/modal/__button/modal__button.css);
+@import url(./blocks/modal/__button/_disabled/modal__button_disabled.css);
+@import url(./blocks/modal/__status/modal__status.css);
+@import url(./blocks/modal/__text/modal__text.css);
+@import url(./blocks/modal/__button/_delete/modal__button_delete);
+@import url(./blocks/modal/__title/_delete/modal__title_delete);
+
+/* form */
+@import url(./blocks/form/form.css);
+@import url(./blocks/form/__input/form__input.css);
+@import url(./blocks/form/__input/_add/form__input_add.css);
+@import url(./blocks/form/__input/_error/form__input_error.css);
+@import url(./blocks/form/__description/_error/form__description_error.css);
+@import url(./blocks/form/__animation/form__animation.css);
+
+/* source */
+@import url(./blocks/source/source.css);
+@import url(./blocks/source/__title/source__title.css);
+@import url(./blocks/source/__form/source__form.css);
+@import url(./blocks/source/__input/source__input.css);
+@import url(./blocks/source/__text/source__text.css);
+@import url(./blocks/source/__button/source__button.css);
+@import url(./blocks/source/__button/__text/source__button__text.css);
+@import url(./blocks/source/__link/source__link.css);

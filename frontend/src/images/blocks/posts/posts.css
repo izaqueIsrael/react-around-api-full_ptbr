@@ -1,0 +1,13 @@
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  grid-template-rows: repeat(2, 2fr);
+  grid-gap: 1.25rem;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .posts {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,11 @@
+.profile__image {
+  position: relative;
+  border-radius: 50%;
+  width: 10.5469rem;
+  height: 10.5469rem;
+  object-fit: cover;
+}
+
+.profile__image:hover {
+  cursor: pointer;
+}

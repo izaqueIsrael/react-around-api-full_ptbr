@@ -1,0 +1,9 @@
+.post__button {
+  display: flex;
+  align-self: center;
+  background-color: white;
+  border-style: none;
+  margin: 0;
+  padding: 0;
+  height: 1.25rem;
+}

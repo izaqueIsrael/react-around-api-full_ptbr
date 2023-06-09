@@ -1,0 +1,7 @@
+.button__image {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 1.3125rem;
+  background: url(../../../images/like.svg) center no-repeat;
+}

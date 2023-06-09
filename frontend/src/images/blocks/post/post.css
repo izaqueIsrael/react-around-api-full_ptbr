@@ -1,0 +1,22 @@
+.post {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
+  gap: 0;
+  background-color: transparent;
+  max-width: 17.625rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-height: 22.5625rem;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .post {
+    width: 88%;
+  }
+}

@@ -1,0 +1,10 @@
+.profile__pictures {
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .profile__pictures {
+    margin-top: 2.375rem;
+  }
+}

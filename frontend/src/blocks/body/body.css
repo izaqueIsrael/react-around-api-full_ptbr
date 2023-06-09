@@ -1,0 +1,14 @@
+.body {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 768px) {
+  .body {
+    display: block;
+    max-width: 47.9375rem;
+  }
+}

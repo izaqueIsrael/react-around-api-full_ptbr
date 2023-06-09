@@ -1,0 +1,9 @@
+.popup_delete {
+  max-width: 27rem;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 768px) {
+  .popup_delete {
+    max-width: 17rem;
+  }
+}

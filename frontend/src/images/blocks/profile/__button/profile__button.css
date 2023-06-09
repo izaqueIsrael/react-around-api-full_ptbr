@@ -1,0 +1,15 @@
+.profile__button {
+  margin: 0 0 0 1.125rem;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .profile__button {
+    margin: 0 0 0 .625rem;
+  }
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.9375rem) {
+  .profile__button {
+    margin: 0 0 0 .3125rem;
+  }
+}

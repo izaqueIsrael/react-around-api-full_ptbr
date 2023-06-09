@@ -1,0 +1,14 @@
+.form__description_error,
+.form__description_error:focus,
+.form__description_error::after,
+.form__description_error::before{
+  display: block;
+  overflow: visible;
+  color: #FF0000;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  height: 2.125rem;
+}

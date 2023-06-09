@@ -1,0 +1,16 @@
+.header__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  line-height: 1.375rem;
+  text-decoration: none;
+  margin-left: 2rem;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 64rem) {
+  .header__title {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}

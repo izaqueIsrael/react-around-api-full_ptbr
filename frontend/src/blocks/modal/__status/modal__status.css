@@ -1,0 +1,5 @@
+.modal__status {
+  display: flex;
+  align-self: center;
+  width: 7.5rem;
+}

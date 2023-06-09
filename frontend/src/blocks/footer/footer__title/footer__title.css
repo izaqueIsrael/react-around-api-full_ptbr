@@ -1,0 +1,16 @@
+.footer__title {
+  text-align: left;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+
+}
+
+@media screen and (min-width: 20rem) and (max-width: 767px) {
+  .footer__title {
+    display: flex;
+    width: 88%;
+    justify-content: flex-start;
+    margin-left: 1.25rem;
+  }
+}

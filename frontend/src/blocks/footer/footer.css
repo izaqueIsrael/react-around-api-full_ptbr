@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  min-width: 55rem;
+  padding: 4.25rem 0 3.75rem 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+
+@media screen and (min-width:20rem) and (max-width: 48rem) {
+  .footer {
+    min-width: auto;
+  }
+}

@@ -1,0 +1,4 @@
+.form__input_error,
+.form__input_error:focus {
+  border-color: #FF0000;
+}

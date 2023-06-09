@@ -1,0 +1,14 @@
+.source__button {
+  margin-top: 13.5rem;
+  border-style: none;
+  padding: .6875rem 5.25rem;
+  border-radius: .125rem;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 64rem) {
+  .source__button {
+    margin-top: 11rem;
+  }
+}

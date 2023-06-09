@@ -1,0 +1,10 @@
+.popup__button {
+  margin-top: 10px;
+  margin-left: .3125rem;
+}
+
+@media screen and (min-width: 20rem) and (max-width: 768px) {
+  .popup__button {
+    margin: 0;
+  }
+}
