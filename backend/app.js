@@ -14,7 +14,7 @@ mongoose.connect(DATABASE_URL, {
 
 app.use(morgan('dev', { stream: winston.stream.write }));
 
-const { validationSignin, validationSignup } = require('./middlewares/validations');
+const { validateSignin, validateSignup } = require('./middlewares/validations');
 const { createUser, login } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const logger = require('./middlewares/errorRegister');
@@ -25,8 +25,8 @@ const absentRouter = require('./routes/absentRouter');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/signin', validationSignin, login);
-app.post('/signup', validationSignup, createUser);
+app.get('/signin', validateSignin, login);
+app.post('/signup', validateSignup, createUser);
 app.use('/cards', auth, cardRouter);
 app.use('/users', auth, userRouter);
 app.use('/*', absentRouter);
