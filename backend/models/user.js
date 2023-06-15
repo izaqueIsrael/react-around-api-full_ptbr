@@ -34,15 +34,15 @@ const userSchema = new mongoose.Schema({
       validator: (v) => validator.isEmail(v),
       message: 'Invalid email format',
     },
-    required: [true, 'Email is required'],
+    required: true,
     unique: true,
   },
   password: {
     type: String,
-    required: [true, 'Password is required'],
+    required: true,
     select: false,
   },
-});
+}, { versionKey: false });
 
 userSchema.statics.findUserByCredentials = (req, res, next) => {
   const { email, password } = req.body;

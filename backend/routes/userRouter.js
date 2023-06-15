@@ -4,20 +4,20 @@ const userRouter = express.Router();
 
 const {
   validateChangeAvatar,
-  validateGetUseById,
   validateChangeProfile,
   validateGetUsers,
+  validateCheckUser,
 } = require('../middlewares/validations');
 
 const {
   getUsers,
-  getUserById,
   changeProfile,
   changeAvatar,
+  checkToken,
 } = require('../controllers/users');
 
 userRouter.get('/', validateGetUsers, getUsers);
-userRouter.get('/:userId', validateGetUseById, getUserById);
+userRouter.get('/me', validateCheckUser, checkToken);
 userRouter.patch('/me', validateChangeProfile, changeProfile);
 userRouter.patch('/me/avatar', validateChangeAvatar, changeAvatar);
 

@@ -19,8 +19,8 @@ const {
 
 cardRouter.get('/', getCards);
 cardRouter.post('/', validateCreateCard, createCard);
+cardRouter.put('/likes/:cardId', validateLike, addLike);
+cardRouter.delete('/likes/:cardId', validateDislike, dislike);
 cardRouter.delete('/:cardId', validateDeleteCard, deleteCard);
-cardRouter.put('/:cardId/likes', validateLike, addLike);
-cardRouter.delete('/:cardId/likes', validateDislike, dislike);
 
 module.exports = cardRouter;

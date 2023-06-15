@@ -1,9 +1,10 @@
 const { celebrate, Joi } = require('celebrate');
+const validator = require('validator');
 
 // Signin and Signup
 const validateSignin = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().email().required(),
+    email: Joi.string().required().email().required(),
     password: Joi.string().min(8).alphanum().required(),
   }),
 });
@@ -56,22 +57,24 @@ const validateChangeProfile = celebrate({
 });
 
 const validateChangeAvatar = celebrate({
-  headers: Joi.object()
-    .keys({
-      authorization: Joi.string()
-        .regex(/^(Bearer )[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_.+/=]*$/)
-        .required(),
-    })
-    .options({ allowUnknown: true }),
+  headers: Joi.object().keys({
+    authorization: Joi.string()
+      .regex(/^(Bearer )[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_.+/=]*$/)
+      .required(),
+  }).options({ allowUnknown: true }),
   body: Joi.object().keys({
     avatar: Joi.string()
-      .pattern(/^(?:(?:https?|ftp):\/\/)?(?:www\.)?(?:[\w-]+\.){1,}(?:com|net|org|edu|gov|mil|co|uk|ca|de|fr|es|it|nl|se|ch|pl|ru|jp|cn|in|br|au|mx|za|no|fi|dk|id|my|kr|ar|cl|ve|pt|il)\b(?:\/[\w-]+)*\/?(?:\?[^\s]*)?(?:#[^\s]*)?$/i)
+      .custom((value, helpers) => {
+        if (!validator.isURL(value)) {
+          return helpers.error('string.url');
+        }
+        return value;
+      })
       .required(),
   }),
 });
 
-// For Cards
-const validateCreateCard = celebrate({
+const validateCheckUser = celebrate({
   headers: Joi.object()
     .keys({
       authorization: Joi.string()
@@ -79,12 +82,24 @@ const validateCreateCard = celebrate({
         .required(),
     })
     .options({ allowUnknown: true }),
+});
+// For Cards
+const validateCreateCard = celebrate({
+  headers: Joi.object().keys({
+    authorization: Joi.string()
+      .regex(/^(Bearer )[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_.+/=]*$/)
+      .required(),
+  }).options({ allowUnknown: true }),
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     link: Joi.string()
-      .pattern(/^(?:(?:https?|ftp):\/\/)?(?:www\.)?(?:[\w-]+\.){1,}(?:com|net|org|edu|gov|mil|co|uk|ca|de|fr|es|it|nl|se|ch|pl|ru|jp|cn|in|br|au|mx|za|no|fi|dk|id|my|kr|ar|cl|ve|pt|il)\b(?:\/[\w-]+)*\/?(?:\?[^\s]*)?(?:#[^\s]*)?$/i)
+      .custom((value, helpers) => {
+        if (!validator.isURL(value)) {
+          return helpers.error('string.url');
+        }
+        return value;
+      })
       .required(),
-    likes: Joi.array().items(Joi.string()),
   }),
 });
 
@@ -138,4 +153,5 @@ module.exports = {
   validateDeleteCard,
   validateLike,
   validateDislike,
+  validateCheckUser,
 };

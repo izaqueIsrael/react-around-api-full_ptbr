@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable consistent-return */
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -5,6 +6,9 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const User = require('../models/user');
 const NotAllowed = require('../errors/NOT_ALLOWED');
+const NotFound = require('../errors/NOT_FOUND');
+const NotModified = require('../errors/NOT_MODIFIED');
+const ServerError = require('../errors/SERVER_ERROR');
 
 dotenv.config();
 const { JWT_SECRET } = process.env;
@@ -12,21 +16,8 @@ const { JWT_SECRET } = process.env;
 const getUsers = (req, res, next) => {
   User.find({})
     .orFail()
-    .then((users) => res.status(201).send({ users }))
-    .catch(() => next(new NotAllowed('Server Error')));
-};
-
-const getUserById = (req, res, next) => {
-  User.findOne({ _id: req.params.userId })
-    .orFail()
-    .then((user) => {
-      if (!user) {
-        res.status(404).send({ error: 'ID do usuário não encontrado' });
-        return;
-      }
-      res.status(200).send({ user });
-    })
-    .catch(() => next(new NotAllowed('Server Error')));
+    .then((users) => res.status(201).send(users))
+    .catch(() => next(new NotFound('Server Error')));
 };
 
 const createUser = (req, res, next) => {
@@ -41,7 +32,7 @@ const createUser = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        res.status(403).send({ message: 'Usuário já cadastrado' });
+        next(new NotModified('Usuário já cadastrado'));
       } else {
         return bcrypt.hash(password, 10);
       }
@@ -57,36 +48,32 @@ const createUser = (req, res, next) => {
       });
     })
     .then((user) => res.status(201).send({ user }))
-    .catch(() => next(new NotAllowed('Server Error')));
+    .catch(() => next(new ServerError('Server Error')));
 };
 
 const changeProfile = (req, res, next) => {
   const { name, about } = req.body;
-  const { authorization } = req.headers;
-  const token = authorization.replace('Bearer ', '');
-  const payload = jwt.verify(token, JWT_SECRET);
-  if (payload.userId === req.body.user._id) {
-    User.findByIdAndUpdate(req.body.user._id, { name, about }, { new: true })
+  const { userId } = req.user;
+  try {
+    User.findByIdAndUpdate(userId, { name, about }, { new: true })
       .orFail()
       .then((user) => res.status(201).send({ user }))
-      .catch(() => next(new NotAllowed('Server Error')));
-  } else {
-    res.status(403).send({ message: 'Não autorizado' });
+      .catch(() => next(new NotFound('User Not Found')));
+  } catch (error) {
+    next(new ServerError('Server Error'));
   }
 };
 
-const changeAvatar = (req, res) => {
+const changeAvatar = (req, res, next) => {
+  const { userId } = req.user;
   const { avatar } = req.body;
-  const { authorization } = req.headers;
-  const token = authorization.replace('Bearer ', '');
-  const payload = jwt.verify(token, JWT_SECRET);
-  if (payload.userId === req.body.user._id) {
-    User.findByIdAndUpdate(req.body.user._id, { avatar }, { new: true })
+  try {
+    User.findByIdAndUpdate(userId, { avatar }, { new: true })
       .orFail()
       .then((user) => res.status(201).send({ user }))
-      .catch((err) => res.status(404).send({ message: err.message }));
-  } else {
-    res.status(403).send({ message: 'Não autorizado' });
+      .catch(() => next(new NotFound('User Not Found')));
+  } catch (error) {
+    next(new ServerError('Server Error'));
   }
 };
 
@@ -96,27 +83,50 @@ const login = (req, res, next) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        return res.status(401).json({ message: 'E-mail ou senha incorretos' });
+        return next(new NotFound('Not Found'));
       }
       return bcrypt.compare(password, user.password)
         .then((result) => {
           if (!result) {
-            return res.status(401).json({ message: 'E-mail ou senha incorretos' });
+            return next(new NotFound('Not Found'));
           }
 
-          const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+          const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '12h' });
 
           return res.status(200).json({ token });
         });
     })
-    .catch(() => next(new NotAllowed('Server Error')));
+    .catch(() => next(new ServerError('Server Error')));
+};
+
+const checkToken = (req, res, next) => {
+  const { userId } = req.user;
+  try {
+    User.findOne({ _id: userId })
+      .orFail()
+      .then((user) => {
+        if (!user) {
+          return next(new NotFound('Not Found'));
+        }
+        return res.status(200).send({
+          _id: user._id,
+          avatar: user.avatar,
+          name: user.name,
+          about: user.about,
+          email: user.email,
+        });
+      })
+      .catch(() => next(new NotAllowed('Server Error')));
+  } catch (error) {
+    return next(new ServerError('Server Error'));
+  }
 };
 
 module.exports = {
   getUsers,
-  getUserById,
   createUser,
   changeProfile,
   changeAvatar,
   login,
+  checkToken,
 };

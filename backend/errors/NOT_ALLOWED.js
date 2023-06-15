@@ -1,7 +1,7 @@
 class NotAllowed extends Error {
   constructor(msg) {
     super(msg);
-    this.statusCode = 500;
+    this.statusCode = 403;
   }
 }
 
