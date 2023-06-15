@@ -33,21 +33,21 @@ class Auth {
       .then((res) => this._checkTheApiResponse(res));
   }
 
-  userLogin({ newEmail, newPassword }) {
-    return fetch(`${this.link}/signin`, {
+  async userLogin({ newEmail, newPassword }) {
+    const response = await fetch(`${this.link}/signin`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ password: newPassword, email: newEmail })
-    })
-      .then((res) => this._checkTheApiResponse(res))
-      .then((data) => {
-        localStorage.setItem('jwt', data.token);
-        return this.validateUserToken(data.token);
-      });
+    });
+
+    const data = await this._checkTheApiResponse(response);
+    await localStorage.setItem('jwt', data.token);
+    return await this.validateUserToken(data.token);
   }
+
 };
 
 const auth = new Auth({ link: 'http://localhost:3000' });

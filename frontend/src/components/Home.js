@@ -44,7 +44,8 @@ function Home({ logout, editingProfile, addingCard, changingAvatar, deletingCard
         linkText='Sair'
         logout={logout}
         place='home'
-        email={currentUser.email}
+        currentUser={currentUser}
+        linkRoute={'/signin'}
       />
       <Main
         onEditProfileClick={handleEditProfileClick}

@@ -15,27 +15,32 @@ function App() {
   const { update, setUpdate, currentUser, setCurrentUser, cards, setCards, requisitionStatus, setRequisitionStatus, statsModal, setStatsIcon, sucessText, failText } = useApp();
 
   // loggin
+  const [email, setEmail] = useState();
   const [loggedIn, setLoggedIn] = useState(false);
 
   const logout = () => {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
-    setCurrentUser(null);
+    setCurrentUser('');
+    api.token = null;
   }
 
   // api
   const setUser = async () => {
-    await api.getUserInfo()
-      .then(user => setCurrentUser(user))
-      .catch(err => err);
+    if (localStorage.getItem('jwt')) {
+      await api.getUserInfo()
+        .then(user => setCurrentUser(user))
+        .catch(err => err);
+    }
   }
 
   const login = async (userData) => {
     await auth.userLogin({ newPassword: userData.password.value, newEmail: userData.mail.value })
-      .then(() => {
-        setUser();
+      .then(async () => {
+        api.token = localStorage.getItem('jwt');
         setStatsIcon(true);
         setLoggedIn(true);
+        await setUser();
       })
       .catch(() => {
         setRequisitionStatus(!requisitionStatus);
@@ -117,6 +122,7 @@ function App() {
           children={
             <Home
               logout={logout}
+              email={email}
               editingProfile={editingProfile}
               addingCard={addingCard}
               changingAvatar={changingAvatar}
@@ -132,7 +138,7 @@ function App() {
     },
     {
       path: '/signin',
-      element: <Login setSend={login} loggedIn={loggedIn} />,
+      element: <Login setSend={login} loggedIn={loggedIn} setEmail={setEmail} />,
     },
     {
       path: 'signup',
@@ -141,12 +147,14 @@ function App() {
   ]);
 
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getUserCards()])
-      .then(([user, cards]) => {
-        setCurrentUser(user);
-        setCards(cards);
-      })
-      .catch(err => err);
+    if (localStorage.getItem('jwt')) {
+      Promise.all([api.getUserInfo(), api.getUserCards()])
+        .then(([user, cards]) => {
+          setCurrentUser(user);
+          setCards(cards);
+        })
+        .catch(err => err);
+    }
   }, [loggedIn, update, setCurrentUser, setCards]);
 
   useEffect(() => {

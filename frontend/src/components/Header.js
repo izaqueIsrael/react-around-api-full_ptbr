@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { hamburguer, logo } from '../utils/constants';
 
-function Header({ linkText, linkRoute, logout, place, email }) {
+function Header({ linkText, linkRoute, logout, place, currentUser }) {
   const [renderOptionsOnTop, setRenderOptionOnTop] = useState(false);
   const [mediaQuery, setMediaQuery] = useState(window.matchMedia('(min-width: 20rem) and (max-width: 48rem)'));
 
   const renderOptions = () => {
     if (place === 'home') {
-      return <Link className='tittle header__title' to={linkRoute} onClick={logout}>{linkText}</Link>;
+      return <Link className='tittle header__title' onClick={logout}>{linkText}</Link>;
     }
     if (place === 'register') {
       return <Link className='tittle header__title' to={linkRoute}>{linkText}</Link>;
     }
   }
-  const userInfo = () => place === 'home' && <p className='subtitle header__title'>{email}</p>;
+  const userInfo = () => place === 'home' && <p className='subtitle header__title'>{currentUser && currentUser.email}</p>;
 
   const responsibleLayout = () => {
     if (mediaQuery.matches) {

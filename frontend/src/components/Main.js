@@ -6,23 +6,25 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, handleCardClick, handleDeleteCardClick, cards, handleDeleteCard, liking, disliking }) {
   const currentUser = useContext(CurrentUserContext);
+  const { name, about, avatar } = currentUser;
+  const reversedCards = Array.isArray(cards) ? [...cards].reverse() : [];
   return (
     <>
       <main className='main'>
         <section className='profile'>
           <div className='profile__container'>
             <div className='profile__pictures'>
-              <img className='profile__image' src={currentUser.avatar} onClick={onEditAvatarClick} alt={currentUser.name} />
+              <img className='profile__image' src={currentUser && avatar} onClick={onEditAvatarClick} alt={currentUser.name} />
               <div className='cover' onClick={onEditAvatarClick} />
             </div>
             <div className='profile__titles'>
               <div className='profile__content'>
-                <h1 className='title profile__title' >{currentUser.name}</h1>
+                <h1 className='title profile__title' >{currentUser && name}</h1>
                 <button className='button profile__button'>
                   <img className='edit' alt='edit' src={editButton} onClick={onEditProfileClick} />
                 </button>
               </div>
-              <h2 className='subtitle profile__subtitle'>{currentUser.about}</h2>
+              <h2 className='subtitle profile__subtitle'>{currentUser && about}</h2>
             </div>
           </div>
           <button className='button' id='button__add' onClick={onAddPlaceClick}>
@@ -30,7 +32,7 @@ function Main({ onEditProfileClick, onAddPlaceClick, onEditAvatarClick, handleCa
           </button>
         </section>
         <section className='posts' >
-          {Array.isArray(cards) && cards.map((card) => (<Card
+          {Array.isArray(reversedCards) && reversedCards.map((card) => (<Card
             card={card}
             key={card._id}
             handleCardClick={handleCardClick}

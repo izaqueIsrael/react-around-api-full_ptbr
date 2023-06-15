@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function ProtectedRoute({ loggedIn, children }) {
-  return loggedIn ? children : <Navigate to='/signin' />;
+function ProtectedRoute({ children }) {
+  const currentUser = useContext(CurrentUserContext);
+  return currentUser ? children : <Navigate to='/signin' />;
 };
 
 export default ProtectedRoute;

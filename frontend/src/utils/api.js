@@ -1,5 +1,5 @@
 class Api {
-  constructor({ token, link }) {
+  constructor({ link, token }) {
     this.token = token;
     this.link = link;
   }
@@ -14,8 +14,8 @@ class Api {
   getUserInfo() {
     return fetch(`${this.link}/users/me`, {
       headers: {
-        authorization: this.token
-      }
+        authorization: `Bearer ${this.token}`,
+      },
     })
       .then((res) => this._checkTheApiResponse(res));
   }
@@ -23,7 +23,7 @@ class Api {
   getUserCards() {
     return fetch(`${this.link}/cards`, {
       headers: {
-        authorization: this.token
+        authorization: `Bearer ${this.token}`,
       }
     })
       .then((res) => this._checkTheApiResponse(res));
@@ -33,8 +33,8 @@ class Api {
     return fetch(`${this.link}/users/me`, {
       method: 'PATCH',
       headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ about: newAbout, name: newName })
     })
@@ -45,8 +45,8 @@ class Api {
     return fetch(`${this.link}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ avatar: image })
     })
@@ -57,10 +57,10 @@ class Api {
     return fetch(`${this.link}/cards`, {
       method: 'POST',
       headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ likes: [], link: `${newLink}`, name: `${newName}`, owner: api.getUserInfo() })
+      body: JSON.stringify({ link: `${newLink}`, name: `${newName}` })
     })
       .then((res) => this._checkTheApiResponse(res));
   }
@@ -69,8 +69,8 @@ class Api {
     return fetch(`${this.link}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this.token
-      }
+        authorization: `Bearer ${this.token}`,
+      },
     })
       .then((res) => this._checkTheApiResponse(res));
   }
@@ -79,8 +79,8 @@ class Api {
     return fetch(`${this.link}/cards/likes/${cardId}`, {
       method: 'PUT',
       headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
       },
     })
       .then((res) => this._checkTheApiResponse(res));
@@ -90,14 +90,14 @@ class Api {
     return fetch(`${this.link}/cards/likes/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json'
+        authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
       },
     })
       .then((res) => this._checkTheApiResponse(res));
   }
 }
 
-const api = new Api({ token: localStorage.getItem('jwt'), link: 'http://localhost:3000' });
+const api = new Api({ link: 'http://localhost:3000', token: localStorage.getItem('jwt') });
 
 export default api;
