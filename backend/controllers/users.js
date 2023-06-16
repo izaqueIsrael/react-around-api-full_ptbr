@@ -27,7 +27,6 @@ const createUser = (req, res, next) => {
   try {
     return User.findOne({ email })
       .then((user) => {
-        res.send({ love: user, mail: email });
         if (user) {
           return next(new NotModified('user already registered'));
         }
@@ -40,7 +39,8 @@ const createUser = (req, res, next) => {
           password: hash,
         });
       })
-      .then((user) => res.status(201).send({ user }));
+      .then((user) => res.status(201).send({ user }))
+      .catch(() => next(new NotModified('user already registered')));
   } catch (error) {
     return next(new ServerError('server error'));
   }
