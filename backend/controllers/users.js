@@ -20,32 +20,29 @@ const getUsers = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const {
-    name,
-    about,
-    avatar,
     email,
     password,
   } = req.body;
 
-  User.findOne({ email })
-    .then((user) => {
-      if (user.email === email) {
-        return next(new NotModified('user already registered'));
-      }
-      return bcrypt.hash(password, 10);
-    })
-    .then((hash) => {
-      User.create({
-        _id: new mongoose.Types.ObjectId(),
-        name,
-        about,
-        avatar,
-        email,
-        password: hash,
-      });
-    })
-    .then((user) => res.status(201).send({ user }))
-    .catch(() => next(new ServerError('server error')));
+  try {
+    return User.findOne({ email })
+      .then((user) => {
+        if (user) {
+          return next(new NotModified('user already registered'));
+        }
+        return bcrypt.hash(password, 10);
+      })
+      .then((hash) => {
+        User.create({
+          _id: new mongoose.Types.ObjectId(),
+          email,
+          password: hash,
+        });
+      })
+      .then((user) => res.status(201).send({ user }));
+  } catch (error) {
+    return next(new ServerError('server error'));
+  }
 };
 
 const changeProfile = (req, res, next) => {
