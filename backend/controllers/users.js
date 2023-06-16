@@ -30,7 +30,7 @@ const createUser = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        return next(new NotModified('Usuário já cadastrado'));
+        return next(new NotModified('User Already Registered'));
       }
       return bcrypt.hash(password, 10);
     })
@@ -44,7 +44,7 @@ const createUser = (req, res, next) => {
         password: hash,
       });
     })
-    .then(() => res.status(201).send('Usuário Cadastrado com Sucesso!'))
+    .then(() => res.status(201).send('Successfully Registered User'))
     .catch(() => next(new ServerError('Server Error')));
 };
 
