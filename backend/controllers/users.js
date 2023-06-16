@@ -27,7 +27,7 @@ const createUser = (req, res, next) => {
   try {
     return User.findOne({ email })
       .then((user) => {
-        if (user) {
+        if (user !== null && user && undefined && user !== '' && user !== {}) {
           return next(new NotModified('user already registered'));
         }
         return bcrypt.hash(password, 10);
