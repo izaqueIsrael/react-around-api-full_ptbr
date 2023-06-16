@@ -5,7 +5,7 @@ class Auth {
 
   _checkTheApiResponse(res) {
     if (!res.ok) {
-      return Promise.reject(`${res.status} error!`);
+      throw new Error(`${res.status} error!`);
     }
     return res.json();
   }
@@ -18,11 +18,15 @@ class Auth {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => this._checkTheApiResponse(res));
+      .then(this._checkTheApiResponse)
+      .then((data) => {
+        localStorage.setItem('jwt', token);
+        return data;
+      });
   }
 
-  registerUser({ newEmail, newPassword }) {
-    return fetch(`${this.link}/signup`, {
+  async registerUser({ newEmail, newPassword }) {
+    return await fetch(`${this.link}/signup`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -44,12 +48,11 @@ class Auth {
     });
 
     const data = await this._checkTheApiResponse(response);
-    await localStorage.setItem('jwt', data.token);
     return await this.validateUserToken(data.token);
   }
 
 };
 
-const auth = new Auth({ link: 'http://localhost:3000' });
+const auth = new Auth({ link: 'https://api.izaque-israel.duckdns.org' });
 
 export default auth;

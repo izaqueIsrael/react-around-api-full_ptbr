@@ -21,7 +21,6 @@ function App() {
   const logout = () => {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
-    setCurrentUser('');
     api.token = null;
   }
 
@@ -38,9 +37,9 @@ function App() {
     await auth.userLogin({ newPassword: userData.password.value, newEmail: userData.mail.value })
       .then(async () => {
         api.token = localStorage.getItem('jwt');
+        await setUser();
         setStatsIcon(true);
         setLoggedIn(true);
-        await setUser();
       })
       .catch(() => {
         setRequisitionStatus(!requisitionStatus);
@@ -147,7 +146,7 @@ function App() {
   ]);
 
   useEffect(() => {
-    if (localStorage.getItem('jwt')) {
+    if (localStorage.getItem('jwt') && loggedIn) {
       Promise.all([api.getUserInfo(), api.getUserCards()])
         .then(([user, cards]) => {
           setCurrentUser(user);
