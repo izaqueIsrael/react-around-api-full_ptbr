@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-unused-vars */
 const mongoose = require('mongoose');
 const Card = require('../models/card');
 const User = require('../models/user');

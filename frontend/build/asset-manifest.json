@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-around-auth_ptbr/static/css/main.ae22d7e6.css",
-    "main.js": "/react-around-auth_ptbr/static/js/main.aebd0492.js",
+    "main.css": "/react-around-auth_ptbr/static/css/main.0e81f0f5.css",
+    "main.js": "/react-around-auth_ptbr/static/js/main.7c3ad2ca.js",
     "static/js/787.f003f1ad.chunk.js": "/react-around-auth_ptbr/static/js/787.f003f1ad.chunk.js",
     "static/media/Garithos_portrait.webp": "/react-around-auth_ptbr/static/media/Garithos_portrait.bfcfee8d4c65804b7435.webp",
     "static/media/logo.svg": "/react-around-auth_ptbr/static/media/logo.66cff89119b58975ea644f9d7f47a8c5.svg",
@@ -14,12 +14,12 @@
     "static/media/sucess.svg": "/react-around-auth_ptbr/static/media/sucess.a9eb6caf1da3ff48b215fb1dd9477d74.svg",
     "static/media/hamburguer.svg": "/react-around-auth_ptbr/static/media/hamburguer.ccf7020248ca1ffd1496842227f6c3c8.svg",
     "static/media/pen.svg": "/react-around-auth_ptbr/static/media/pen.ae1a976ddb506239e9f06655014e44a3.svg",
-    "main.ae22d7e6.css.map": "/react-around-auth_ptbr/static/css/main.ae22d7e6.css.map",
-    "main.aebd0492.js.map": "/react-around-auth_ptbr/static/js/main.aebd0492.js.map",
+    "main.0e81f0f5.css.map": "/react-around-auth_ptbr/static/css/main.0e81f0f5.css.map",
+    "main.7c3ad2ca.js.map": "/react-around-auth_ptbr/static/js/main.7c3ad2ca.js.map",
     "787.f003f1ad.chunk.js.map": "/react-around-auth_ptbr/static/js/787.f003f1ad.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae22d7e6.css",
-    "static/js/main.aebd0492.js"
+    "static/css/main.0e81f0f5.css",
+    "static/js/main.7c3ad2ca.js"
   ]
 }
