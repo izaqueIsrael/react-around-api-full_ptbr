@@ -27,20 +27,22 @@ const createUser = (req, res, next) => {
   try {
     return User.findOne({ email })
       .then((user) => {
-        if (user !== null && user && undefined && user !== '' && user !== {}) {
-          return next(new NotModified('user already registered'));
+        if (user) {
+          res.send({ 'banana' });
+          // return next(new NotModified('user already registered'));
         }
-        return bcrypt.hash(password, 10);
+        return res.send('caqui');
+        // return bcrypt.hash(password, 10);
       })
-      .then((hash) => {
-        User.create({
-          _id: new mongoose.Types.ObjectId(),
-          email,
-          password: hash,
-        });
-      })
-      .then((user) => res.status(201).send({ user }))
-      .catch(() => next(new NotModified('user already registered')));
+    // .then((hash) => {
+    //   User.create({
+    //     _id: new mongoose.Types.ObjectId(),
+    //     email,
+    //     password: hash,
+    //   });
+    // })
+    // .then((user) => res.status(201).send({ user }))
+    // .catch(() => next(new NotModified('user already registered')));
   } catch (error) {
     return next(new ServerError('server error'));
   }
