@@ -44,7 +44,7 @@ const createUser = (req, res, next) => {
         password: hash,
       });
     })
-    .then((user) => res.status(201).send(user))
+    .then((user) => res.status(201).send({ user }))
     .catch(() => next(new ServerError('server error')));
 };
 
