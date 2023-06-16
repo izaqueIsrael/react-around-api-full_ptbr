@@ -29,7 +29,6 @@ const createUser = (req, res, next) => {
 
   User.findOne({ email })
     .then((user) => {
-      res.send({ mail: email, love: user });
       if (user) {
         return next(new NotModified('user already registered'));
       }
