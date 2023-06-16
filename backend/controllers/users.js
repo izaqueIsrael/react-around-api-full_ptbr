@@ -37,9 +37,9 @@ const createUser = (req, res, next) => {
           _id: new mongoose.Types.ObjectId(),
           email,
           password: hash,
-        });
+        })
+          .then((user) => res.status(201).send({ user }));
       })
-      .then((user) => res.status(201).send({ user }))
       .catch(() => next(new NotModified('user already registered')));
   } catch (error) {
     return next(new ServerError('server error'));
