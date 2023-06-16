@@ -1,7 +1,5 @@
 /* eslint-disable prefer-regex-literals */
-
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
@@ -43,32 +41,5 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
 }, { versionKey: false });
-
-userSchema.statics.findUserByCredentials = (req, res, next) => {
-  const { email, password } = req.body;
-
-  return userSchema.findOne({ email })
-    .then((user) => {
-      if (!user) {
-        return res.status(401).json({ message: 'E-mail ou senha incorretos' });
-      }
-
-      return bcrypt.compare(password, user.password)
-        .then((matched) => {
-          if (!matched) {
-            return res.status(401).json({ message: 'E-mail ou senha incorretos' });
-          }
-
-          req.user = user;
-          return next();
-        })
-        .catch((error) => {
-          res.status(500).json({ message: error });
-        });
-    })
-    .catch((error) => {
-      res.status(500).json({ message: error });
-    });
-};
 
 module.exports = mongoose.model('user', userSchema);
