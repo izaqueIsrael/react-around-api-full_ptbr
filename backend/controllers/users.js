@@ -15,7 +15,7 @@ const getUsers = (req, res, next) => {
   User.find({})
     .orFail()
     .then((users) => res.status(201).send(users))
-    .catch(() => next(new NotFound('Server Error')));
+    .catch(() => next(new NotFound('server error')));
 };
 
 const createUser = (req, res, next) => {
@@ -30,7 +30,7 @@ const createUser = (req, res, next) => {
   User.findOne({ email })
     .then((user) => {
       if (user) {
-        return next(new NotModified('User Already Registered'));
+        return next(new NotModified('user already registered'));
       }
       return bcrypt.hash(password, 10);
     })
@@ -44,8 +44,8 @@ const createUser = (req, res, next) => {
         password: hash,
       });
     })
-    .then(() => res.status(201).send('Successfully Registered User'))
-    .catch(() => next(new ServerError('Server Error')));
+    .then(() => res.status(201).send('successfully registered user'))
+    .catch(() => next(new ServerError('server error')));
 };
 
 const changeProfile = (req, res, next) => {
@@ -55,9 +55,9 @@ const changeProfile = (req, res, next) => {
     User.findByIdAndUpdate(userId, { name, about }, { new: true })
       .orFail()
       .then((user) => res.status(201).send({ user }))
-      .catch(() => next(new NotFound('User Not Found')));
+      .catch(() => next(new NotFound('user not found')));
   } catch (error) {
-    next(new ServerError('Server Error'));
+    next(new ServerError('server error'));
   }
 };
 
@@ -68,9 +68,9 @@ const changeAvatar = (req, res, next) => {
     User.findByIdAndUpdate(userId, { avatar }, { new: true })
       .orFail()
       .then((user) => res.status(201).send({ user }))
-      .catch(() => next(new NotFound('User Not Found')));
+      .catch(() => next(new NotFound('user not found')));
   } catch (error) {
-    next(new ServerError('Server Error'));
+    next(new ServerError('server error'));
   }
 };
 
@@ -80,12 +80,12 @@ const login = (req, res, next) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        return next(new NotFound('Not Found'));
+        return next(new NotFound('not found'));
       }
       return bcrypt.compare(password, user.password)
         .then((result) => {
           if (!result) {
-            return next(new NotFound('Not Found'));
+            return next(new NotFound('not found'));
           }
 
           const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '12h' });
@@ -93,7 +93,7 @@ const login = (req, res, next) => {
           return res.status(200).json({ token });
         });
     })
-    .catch(() => next(new ServerError('Server Error')));
+    .catch(() => next(new ServerError('server error')));
 };
 
 const checkToken = (req, res, next) => {
@@ -103,7 +103,7 @@ const checkToken = (req, res, next) => {
       .orFail()
       .then((user) => {
         if (!user) {
-          return next(new NotFound('Not Found'));
+          return next(new NotFound('not found'));
         }
         return res.status(200).send({
           _id: user._id,
@@ -113,9 +113,9 @@ const checkToken = (req, res, next) => {
           email: user.email,
         });
       })
-      .catch(() => next(new NotAllowed('Server Error')));
+      .catch(() => next(new NotAllowed('server error')));
   } catch (error) {
-    return next(new ServerError('Server Error'));
+    return next(new ServerError('server error'));
   }
 };
 

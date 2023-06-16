@@ -10,12 +10,12 @@ const getCards = async (req, res, next) => {
     const cards = await Card.find({}).populate('owner');
 
     if (!cards) {
-      return next(new NotFound('No cards'));
+      return next(new NotFound('no cards'));
     }
 
     return res.status(200).send(cards);
   } catch (error) {
-    return next(new ServerError('Server Error'));
+    return next(new ServerError('server error'));
   }
 };
 
@@ -27,7 +27,7 @@ const createCard = async (req, res, next) => {
     const user = await User.findOne({ _id: userId });
 
     if (!user) {
-      return next(new NotFound('User Not Found'));
+      return next(new NotFound('user not found'));
     }
 
     const newId = new mongoose.Types.ObjectId();
@@ -48,7 +48,7 @@ const createCard = async (req, res, next) => {
 
     return res.status(201).send({ data: card });
   } catch (error) {
-    return next(new ServerError('Server Error'));
+    return next(new ServerError('server error'));
   }
 };
 
@@ -60,12 +60,12 @@ const deleteCard = async (req, res, next) => {
     });
 
     if (!card) {
-      return next(new NotFound('Card not found or not owned by the user'));
+      return next(new NotFound('card not found or not owned by the user'));
     }
 
     return res.status(201).send({ data: card });
   } catch (err) {
-    return next(new ServerError('Server Error'));
+    return next(new ServerError('server error'));
   }
 };
 
@@ -75,17 +75,17 @@ const addLike = async (req, res, next) => {
     const user = await User.findOne({ _id: userId });
 
     if (!user) {
-      return next(new NotFound('User Not Found'));
+      return next(new NotFound('user not found'));
     }
 
     const cardAux = await Card.findById(req.params.cardId);
 
     if (!cardAux) {
-      return next(new NotFound('Card Not Found'));
+      return next(new NotFound('card not found'));
     }
 
     if (cardAux.likes.some((like) => like.equals(user._id))) {
-      return next(new NotModified('User already liked this card'));
+      return next(new NotModified('user already liked this card'));
     }
 
     const card = await Card.findByIdAndUpdate(
@@ -101,12 +101,12 @@ const addLike = async (req, res, next) => {
     );
 
     if (!card) {
-      return next(new NotFound('Card not found or not owned by the user'));
+      return next(new NotFound('card not found or not owned by the user'));
     }
 
     return res.status(201).send({ data: card });
   } catch (error) {
-    return next(new ServerError('Server Error'));
+    return next(new ServerError('server error'));
   }
 };
 
@@ -116,7 +116,7 @@ const dislike = async (req, res, next) => {
     const user = await User.findOne({ _id: userId });
 
     if (!user) {
-      return next(new NotFound('User not found'));
+      return next(new NotFound('user not found'));
     }
 
     const card = await Card.findByIdAndUpdate(
@@ -130,12 +130,12 @@ const dislike = async (req, res, next) => {
     );
 
     if (!card) {
-      return next(new NotFound('User not found'));
+      return next(new NotFound('user not found'));
     }
 
     return res.status(200).send({ data: card });
   } catch (err) {
-    return next(new ServerError('Server Error'));
+    return next(new ServerError('server error'));
   }
 };
 
