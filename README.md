@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este é um projeto de front-end e back-end para uma aplicação de autenticação em React. Ele permite aos usuários fazerem login, se registrarem e visualizarem conteúdo protegido. O front-end foi desenvolvido com React e o back-end com Express e MongoDB.
+Este é um projeto de front-end e back-end para uma aplicação de autenticação em React. Ele permite aos usuários fazerem login, se registrarem e visualizarem conteúdo protegido. O front-end foi desenvolvido com React e o back-end com Express e MongoDB, além do deploy ter sido realizado com a Google Cloud.
 
 ## Links
 
