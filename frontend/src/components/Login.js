@@ -73,7 +73,7 @@ function Login({ setSend, loggedIn }) {
               <button className={!isValid ? 'button source__button source__button__text' : 'button source__button source__button__text modal__button_disabled'} disabled={!isValid}>
                 <span id='source__button_text' className={`button__text source__button_text ${!isValid ? '' : 'button__text_disabled'}`}>
                   {sending ? (
-                    <>Load <img className='form__animation' alt='loading' src={dotAnimation} /></>
+                    <>Entrando <img className='form__animation' alt='loading' src={dotAnimation} /></>
                   ) : (
                     'Entrar'
                   )}
