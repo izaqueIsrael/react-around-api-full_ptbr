@@ -1,7 +1,3 @@
-// Meu nobre venho através dessa mensagem para pedir que desconsidere o domínio
-// e o protocolo https de sua correção porque o site de obtenção de domínio da practicum
-// está quebrado e sem domínio ñ posso implantar o https
-
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');

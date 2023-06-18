@@ -50,8 +50,8 @@ function App() {
   const register = async (userData) => {
     await auth.registerUser({ newPassword: userData.password.value, newEmail: userData.mail.value })
       .then(() => {
-        setStatsIcon(true);
         setRequisitionStatus(!requisitionStatus);
+        setStatsIcon(true);
       })
       .catch(() => {
         setRequisitionStatus(!requisitionStatus);
