@@ -108,3 +108,17 @@
 @import url(./blocks/source/__button/source__button.css);
 @import url(./blocks/source/__button/__text/source__button__text.css);
 @import url(./blocks/source/__link/source__link.css);
+
+.source__button_text {
+  color: black;
+}
+
+.source__description_error {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: .75rem;
+  font-weight: 100;
+  color: #FF0000;
+  width: auto;
+  min-height: .875rem;
+}

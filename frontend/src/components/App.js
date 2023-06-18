@@ -42,8 +42,8 @@ function App() {
         setLoggedIn(true);
       })
       .catch(() => {
-        setStatsIcon(false);
         setRequisitionStatus(!requisitionStatus);
+        setStatsIcon(false);
       })
   }
 
@@ -54,8 +54,8 @@ function App() {
         setRequisitionStatus(!requisitionStatus);
       })
       .catch(() => {
-        setStatsIcon(false);
         setRequisitionStatus(!requisitionStatus);
+        setStatsIcon(false);
       })
   }
 
