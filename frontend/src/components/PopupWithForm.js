@@ -25,7 +25,7 @@ function PopupWithForm({ errors, formType, className, children, title, buttonTex
           <button id='form__button' type='submit' className={!errors ? 'button modal__button' : 'button modal__button modal__button_disabled'} disabled={errors}>
             <span id='form__button_text' className={`button__text ${!errors ? '' : 'button__text_disabled'}`}>
               {sending ? (
-                <>Salvando <img className='form__animation' alt='loading' src={dotAnimation} /></>
+                <>Save <img className='form__animation' alt='loading' src={dotAnimation} /></>
               ) : (
                 buttonText
               )}
