@@ -22,7 +22,7 @@ services:
       - "8081:8081"
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=examplepassword  # Substitua pelo que desejar ou remova para não ter senha.
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=123456
       - ME_CONFIG_MONGODB_URL=mongodb://mongodb-container:27017/aroundb
     depends_on:
       - mongodb

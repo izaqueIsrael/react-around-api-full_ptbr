@@ -1,24 +1,31 @@
 const express = require('express');
 
-const userRouter = express.Router();
+class UserRouter {
+  constructor() {
+    this.router = express.Router();
+    this.initializeRoutes();
+  }
 
-const {
-  validateChangeAvatar,
-  validateChangeProfile,
-  validateGetUsers,
-  validateCheckUser,
-} = require('../middlewares/validations');
+  initializeRoutes() {
+    const {
+      validateChangeAvatar,
+      validateChangeProfile,
+      validateGetUsers,
+      validateCheckUser,
+    } = require('../middlewares/validations');
 
-const {
-  getUsers,
-  changeProfile,
-  changeAvatar,
-  checkToken,
-} = require('../controllers/users');
+    const {
+      getUsers,
+      changeProfile,
+      changeAvatar,
+      checkToken,
+    } = require('../controllers/users');
 
-userRouter.get('/', validateGetUsers, getUsers);
-userRouter.get('/me', validateCheckUser, checkToken);
-userRouter.patch('/me', validateChangeProfile, changeProfile);
-userRouter.patch('/me/avatar', validateChangeAvatar, changeAvatar);
+    this.router.get('/', validateGetUsers, getUsers);
+    this.router.get('/me', validateCheckUser, checkToken);
+    this.router.patch('/me', validateChangeProfile, changeProfile);
+    this.router.patch('/me/avatar', validateChangeAvatar, changeAvatar);
+  }
+}
 
-module.exports = userRouter;
+module.exports = new UserRouter().router;

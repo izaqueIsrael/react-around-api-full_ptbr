@@ -1,9 +1,16 @@
 const express = require('express');
 
-const absentRouter = express.Router();
+class AbsentRouter {
+  constructor() {
+    this.router = express.Router();
+    this.initializeRoutes();
+  }
 
-absentRouter.all('/', (req, res) => {
-  res.status(404).send({ message: 'A solicitação não foi encontrada' });
-});
+  initializeRoutes() {
+    this.router.all('/', (req, res) => {
+      res.status(404).send({ message: 'A solicitação não foi encontrada' });
+    });
+  }
+}
 
-module.exports = absentRouter;
+module.exports = new AbsentRouter().router;
