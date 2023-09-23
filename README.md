@@ -2,6 +2,10 @@
 
 Este projeto é uma rede social onde os usuários podem compartilhar fotos em formato de cards. Permite login, registro, curtidas, edição de informações e criação de cards. O front-end é construído com React, e o back-end utiliza Express e MongoDB. Originalmente foi implantado no Google Cloud, mas atualmente está indisponível devido à expiração do período gratuito.
 
+## Pré-requisitos
+
+- Docker e Docker Compose instalados em sua máquina.
+
 ## 📁 Estrutura
 
 - `/backend` - Contém todo o código relacionado ao back-end.
