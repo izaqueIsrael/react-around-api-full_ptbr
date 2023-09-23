@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    return next(new NotAllowed('Não Autorizado'));
+    return next(new NotAllowed('Não Autorizado1'));
   }
 
   const token = authorization.replace('Bearer ', '');
@@ -23,7 +23,7 @@ const auth = (req, res, next) => {
     req.user = payload;
     next();
   } catch (err) {
-    return next(new NotAllowed('Não Autorizado'));
+    return next(new NotAllowed('Não Autorizado2'));
   }
 };
 

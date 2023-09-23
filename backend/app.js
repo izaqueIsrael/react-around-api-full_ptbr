@@ -7,7 +7,7 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 app.options('*', cors());
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/aroundb';
 
 mongoose.connect(DATABASE_URL, {

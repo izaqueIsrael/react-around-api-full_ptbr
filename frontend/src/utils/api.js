@@ -98,6 +98,7 @@ class Api {
   }
 }
 
-const api = new Api({ link: 'https://api.izaque-israel.duckdns.org', token: localStorage.getItem('jwt') });
+const api = new Api({ link: 'http://localhost:3001', token: localStorage.getItem('jwt') });
+
 
 export default api;

@@ -1,65 +1,54 @@
-# React Around Auth
+# Around US
 
-## Descrição
+Este projeto é uma rede social onde os usuários podem compartilhar fotos em formato de cards. Permite login, registro, curtidas, edição de informações e criação de cards. O front-end é construído com React, e o back-end utiliza Express e MongoDB. Originalmente foi implantado no Google Cloud, mas atualmente está indisponível devido à expiração do período gratuito.
 
-Este projeto é uma rede social baseada em cards em que cada usuário pode postar suas fotos. Ele permite aos usuários fazerem login, se registrarem, curtirem, alterarem informações e criar cards. O front-end foi desenvolvido com React e o back-end com Express e MongoDB, além do deploy ter sido realizado com a Google Cloud.
+## 📁 Estrutura
 
-## Links
+- `/backend` - Contém todo o código relacionado ao back-end.
+- `/frontend` - Contém todo o código relacionado ao front-end.
 
-- [Website de produção](https://www.izaque-israel.duckdns.org/)
-- [Website alternativo](https://izaque-israel.duckdns.org/)
-- [Repositório](https://github.com/izaqueIsrael/react-around-api-full_ptbr)
+## 🚀 Tecnologias Principais
 
-## Requisitos
+- Frontend: **React**
+- Backend: **Express** e **MongoDB**
 
-Certifique-se de ter os seguintes requisitos instalados em seu ambiente de desenvolvimento:
+## 🔍 Funcionalidades
 
-- Node.js
-- npm ou yarn
-- MongoDB
+- **Autenticação:** Usuários podem fazer login e registrar.
+- **Galeria:** Visualize fotos compartilhadas por outros usuários.
+- **Curtidas:** Possibilidade de curtir fotos de outros usuários.
+- **Perfil:** Os usuários podem editar suas informações.
+- **Postagem:** Usuários podem postar novas fotos.
 
-## Instalação
+## 🛠️ Instalação e Execução
 
-### Front-end
+1. **Clone o repositório**
 
-1. Clone o repositório do front-end: `git clone https://github.com/izaqueIsrael/react-around-auth_ptbr.git`
-2. Acesse o diretório do projeto: `cd react-around-auth_ptbr`
-3. Instale as dependências: `npm install` ou `yarn install`
+   ```bash
+    git clone https://github.com/izaqueIsrael/around-express_ptbr.git
+   ```
 
-### Back-end
+2. **Navegue até o diretório do projeto**
 
-1. Clone o repositório do back-end: `git clone https://github.com/izaqueIsrael/around-express_ptbr.git`
-2. Acesse o diretório do projeto: `cd around-express_ptbr`
-3. Instale as dependências: `npm install` ou `yarn install`
+   ```bash
+    cd around-express_ptbr
+   ```
 
-## Configuração
+3. **Use Docker Compose para instalar e iniciar os serviços**
 
-### Front-end
+   ```bash
+    docker-compose up
+   ```
 
-No arquivo `src/utils/auth.js`, atualize a constante `API_URL` com a URL correta do seu back-end.
+4. **Acesse o frontend e o backend nos respectivos portos, por padrão:**
 
-### Back-end
+- Frontend: `http://localhost:3000`
+- Backend: `http://localhost:3001`
 
-1. Crie um arquivo `.env` na raiz do projeto back-end.
-2. Defina as variáveis de ambiente necessárias no arquivo `.env`. Exemplo:
+## 🤝 Contribuições
 
-## Executando a aplicação
+Sinta-se à vontade para abrir issues ou fazer pull requests para melhorar o projeto.
 
-### Front-end
+## ⚖️ Licença
 
-1. No diretório do projeto front-end, execute o seguinte comando: `npm start` ou `yarn start`
-2. A aplicação será executada em `http://localhost:3000`
-
-### Back-end
-
-1. Certifique-se de ter o MongoDB em execução.
-2. No diretório do projeto back-end, execute o seguinte comando: `npm start` ou `yarn start`
-3. O servidor estará em execução na porta definida no arquivo `.env`.
-
-## Contribuindo
-
-Contribuições são bem-vindas! Se você encontrar algum problema, bug ou tiver sugestões de melhorias, sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
-## Licença
-
-Este projeto está licenciado sob a Licença ISC. Consulte o arquivo `LICENSE` para obter mais detalhes.
+Open Source

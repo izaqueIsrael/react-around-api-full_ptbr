@@ -53,6 +53,6 @@ class Auth {
 
 };
 
-const auth = new Auth({ link: 'https://api.izaque-israel.duckdns.org' });
+const auth = new Auth({ link: 'http://localhost:3001' });
 
 export default auth;

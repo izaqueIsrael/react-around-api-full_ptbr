@@ -91,7 +91,10 @@ const login = (req, res, next) => {
           return res.status(200).json({ token });
         });
     })
-    .catch(() => next(new ServerError('server error')));
+    .catch((err) => {
+      console.error(err);
+      next(new ServerError('server error'));
+    });
 };
 
 const checkToken = (req, res, next) => {
